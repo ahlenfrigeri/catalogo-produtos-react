@@ -1,0 +1,202 @@
+:root {
+  --cor-primaria: #4f46e5;
+  --cor-primaria-escura: #3730a3;
+  --cor-texto: #1f2937;
+  --cor-suave: #6b7280;
+  --cor-fundo: #f3f4f6;
+  --cor-branco: #ffffff;
+  --cor-erro: #b91c1c;
+  --raio: 0.75rem;
+  --sombra: 0 4px 16px rgba(17, 24, 39, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: min(90%, 72rem);
+  margin-inline: auto;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  background: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+}
+.cabecalho__logo {
+  font-size: 1.75rem;
+}
+.cabecalho__logo span {
+  color: #fbbf24;
+}
+.cabecalho__texto {
+  opacity: 0.85;
+}
+
+/* Layout da página: mobile first (uma coluna) */
+.catalogo {
+  display: grid;
+  gap: 2rem;
+}
+.secao__titulo {
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+}
+.secao__titulo small {
+  color: var(--cor-suave);
+  font-weight: 400;
+}
+
+/* Grade de cards */
+.grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card__imagem {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  width: 100%;
+  background: #e5e7eb;
+}
+.card__corpo {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+.card__nome {
+  font-size: 1.125rem;
+}
+.card__descricao {
+  color: var(--cor-suave);
+  font-size: 0.9375rem;
+  flex: 1;
+}
+.card__preco {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+/* Formulário */
+.formulario {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.formulario__titulo {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.formulario__rotulo {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.formulario__campo {
+  font: inherit;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.formulario__campo:focus {
+  outline: 2px solid var(--cor-primaria);
+  border-color: transparent;
+}
+.formulario__erro {
+  color: var(--cor-erro);
+  font-weight: 600;
+}
+
+.botao {
+  font: inherit;
+  font-weight: 700;
+  color: var(--cor-branco);
+  background: var(--cor-primaria);
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.botao:hover {
+  background: var(--cor-primaria-escura);
+}
+
+.aviso {
+  background: var(--cor-branco);
+  border-radius: var(--raio);
+  padding: 2rem;
+  text-align: center;
+  color: var(--cor-suave);
+}
+.aviso--carregando {
+  animation: pulsar 1s ease-in-out infinite alternate;
+}
+@keyframes pulsar {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+.rodape {
+  text-align: center;
+  color: var(--cor-suave);
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+/* Tablet: 2 colunas de cards */
+@media (min-width: 40em) {
+  .grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: formulário ao lado da lista */
+@media (min-width: 64em) {
+  .catalogo {
+    grid-template-columns: 1fr 20rem;
+    align-items: start;
+  }
+  .catalogo__formulario {
+    position: sticky;
+    top: 1rem;
+  }
+}
